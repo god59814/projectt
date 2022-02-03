@@ -11,7 +11,6 @@ class App extends React.Component {
     return (
       <section>
         <Button />
-        <Button />
         {/* Modification de Anita */}
 
 
