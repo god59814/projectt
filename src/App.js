@@ -12,6 +12,8 @@ class App extends React.Component {
         <Add />
         <Button />
         {/* Modification de Pauline */}
+        <Button />
+        {/* Modification de Anita */}
       </section>
     );
   }
