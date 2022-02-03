@@ -12,7 +12,7 @@ class App extends React.Component {
       <section>
         <Button />
         <Button />
-        {/* Modification de Lysiane */}
+        {/* Modification de Anita */}
 
 
       </section>
