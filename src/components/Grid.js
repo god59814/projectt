@@ -22,18 +22,18 @@ class Grid extends React.Component {
       <article>
         <div>
           <Button index={0}></Button>
-          <Button></Button>
-          <Button></Button>
+          <Button index={1}></Button>
+          <Button index={2}></Button>
         </div>
         <div>
-          <Button></Button>
-          <Button></Button>
-          <Button></Button>
+          <Button index={3}></Button>
+          <Button index={4}></Button>
+          <Button index={5}></Button>
         </div>
         <div>
-          <Button></Button>
-          <Button></Button>
-          <Button></Button>
+          <Button index={6}></Button>
+          <Button index={7}></Button>
+          <Button index={8}></Button>
         </div>
       </article>
     );
