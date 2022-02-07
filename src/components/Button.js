@@ -1,5 +1,6 @@
 import React from "react";
 // CSS
+// import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Button extends React.Component {
@@ -24,11 +25,9 @@ class Button extends React.Component {
   render() {
     return (
       <button
-        className="btn btn-light p-4 m-1 border round-4"
+        className={`btn btn-light m-1 border round-4 square`}
         key={this.props.index}
-        onClick={(e) => {
-          this.handleClick(e);
-        }}
+        onClick={(e) => this.handleClick(e)}
       >
         {this.state.player}
       </button>
