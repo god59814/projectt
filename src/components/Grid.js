@@ -9,31 +9,70 @@ class Grid extends React.Component {
     super();
 
     this.state = {
-      checkedBtn: [],
+      computer: "O",
+      player: "X",
+      clickedBtns: [],
+      defaultValue : "",
+      // buttons : {
+      //   button1 : "",
+      // },
+      // btns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      buttons: [null, null, null, null, null, null, null, null, null]
     };
 
     // this. = this..bind(this);
   }
 
+  // const listButtons.map((button) => );
+
+
+  ComputerMove() {
+    // if this.setState
+
+
+    // btns.map((btn) => {
+    //   if (btn.value === "X") {
+      // null
+    // } else {
+      // algo computer
+    }
+    // })
+  // }
+
+  // function clickedBtns.map((btn, index) => {
+  //     if (btn === index)
+  //   })
+
   // sauvegarder les index dans checkedBtn
+  // if (player === "X")
+  handleClick(e) {
+    e.preventDefault();
+    return this.setState({
+      click: true,
+    });
+  }
+
+  renderButton(i) {
+    return <Button value={this.state.buttons[i]} />;
+  }
 
   render() {
     return (
       <article>
         <div>
-          <Button index={0}></Button>
-          <Button index={1}></Button>
-          <Button index={2}></Button>
+          {this.renderButton(0)}
+          {this.renderButton(1)}
+          {this.renderButton(2)}
         </div>
         <div>
-          <Button index={3}></Button>
-          <Button index={4}></Button>
-          <Button index={5}></Button>
+          {this.renderButton(3)}
+          {this.renderButton(4)}
+          {this.renderButton(5)}
         </div>
         <div>
-          <Button index={6}></Button>
-          <Button index={7}></Button>
-          <Button index={8}></Button>
+          {this.renderButton(6)}
+          {this.renderButton(7)}
+          {this.renderButton(8)}
         </div>
       </article>
     );
