@@ -8,8 +8,9 @@ class Button extends React.Component {
     super();
 
     this.state = {
-      computer: "",
-      player: "",
+      // computer: "",
+      // player: "",
+      click: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -18,19 +19,36 @@ class Button extends React.Component {
   handleClick(e) {
     e.preventDefault();
     return this.setState({
-      player: "X",
+      click: true,
     });
   }
 
+  
+
   render() {
     return (
-      <button
-        className={`btn btn-light m-1 border round-4 square`}
-        key={this.props.index}
-        onClick={(e) => this.handleClick(e)}
-      >
-        {this.state.player}
-      </button>
+
+      <> 
+      {
+        this.state.click === false ? 
+          ( <button
+            className={`btn btn-light m-1 border round-4 square`}
+            key={this.props.index}
+            onClick={(e) => this.handleClick(e)}
+            // value={this.props.defaultValue} // créer la fonction pour changer la value ici
+          >
+          </button>)
+          :
+          ( <button
+            className={`btn btn-light m-1 border round-4 square`}
+            key={this.props.index}
+            onClick={(e) => this.handleClick(e)}
+            // value={this.props.player}
+          >
+            {this.props.player}
+            </button>)
+      }
+          </>
     );
   }
 }
