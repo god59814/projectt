@@ -9,51 +9,36 @@ class Grid extends React.Component {
     super();
 
     this.state = {
-      computer: "O",
-      player: "X",
-      clickedBtns: [],
-      defaultValue : "",
-      // buttons : {
-      //   button1 : "",
-      // },
-      // btns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      buttons: [null, null, null, null, null, null, null, null, null]
+      player1: "X",
+      player2: "O",
+      // clickedBtns: [],
+      // defaultValue: "",
+      // buttons: [null, null, null, null, null, null, null, null, null],
+      buttons: Array(9).fill(null),
+      // Array est un tableau de 9 elements, fill = remplir -> null
+      // Chaque elements correspond à null
     };
 
-    // this. = this..bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // const listButtons.map((button) => );
-
-
-  ComputerMove() {
-    // if this.setState
-
-
-    // btns.map((btn) => {
-    //   if (btn.value === "X") {
-      // null
-    // } else {
-      // algo computer
-    }
-    // })
-  // }
-
-  // function clickedBtns.map((btn, index) => {
-  //     if (btn === index)
-  //   })
-
-  // sauvegarder les index dans checkedBtn
-  // if (player === "X")
-  handleClick(e) {
-    e.preventDefault();
-    return this.setState({
-      click: true,
+  handleClick(i) {
+    const updatedButtons = this.state.buttons;
+    updatedButtons[i] = "X";
+    // updatedButtons.push({ i });
+    this.setState({
+      buttons: updatedButtons,
     });
+    console.log(this.state.buttons);
   }
 
   renderButton(i) {
-    return <Button value={this.state.buttons[i]} />;
+    return (
+      <Button
+        value={this.state.buttons[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
@@ -78,4 +63,5 @@ class Grid extends React.Component {
     );
   }
 }
+
 export default Grid;
