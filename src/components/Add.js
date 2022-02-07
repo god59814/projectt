@@ -1,7 +1,7 @@
 import React from "react";
 
 // JS
-import Add from "./components/Button";
+import Add from "./components/Button.js";
 
 // CSS
 import "./App.css";
