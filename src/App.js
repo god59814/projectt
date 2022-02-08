@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <section className="d-flex justify-content-center align-items-center border">
         {/* <Grid /> */}
-        <GridLy/>
+        <Grid/>
       </section>
     );
   }
