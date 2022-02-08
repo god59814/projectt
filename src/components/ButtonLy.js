@@ -10,8 +10,6 @@ class ButtonLy extends React.Component {
    
       }
       
-      
-    
 
     render() {
 

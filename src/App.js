@@ -1,6 +1,6 @@
 import React from "react";
 // Components JS
-import Grid from "./components/Grid";
+// import Grid from "./components/Grid";
 // import Button from "./components/Button";
 // CSS
 import "./App.css";
