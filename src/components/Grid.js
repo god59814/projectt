@@ -72,6 +72,7 @@ class Grid extends React.Component {
         this.setState({
           displayP2Won: "initial",
           displayRestart: "initial",
+          displayDraw: "none",
           winner: true,
         });
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
