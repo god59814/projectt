@@ -1,11 +1,11 @@
 import React from "react";
 // Components JS
-import Grid from "./components/Grid";
+// import Grid from "./components/Grid";
 // import Button from "./components/Button";
+import GridLy from "./components/GridLy";
 // CSS
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GridLy from "./components/GridLy";
 
 class App extends React.Component {
   constructor() {
@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <section className="d-flex justify-content-center align-items-center border">
         {/* <Grid /> */}
-        <GridLy/>
+        <GridLy />
       </section>
     );
   }
