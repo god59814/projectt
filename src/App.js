@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <section className="d-flex justify-content-center align-items-center border">
+      <section className="container mt-4">
         <Grid />
       </section>
     );
