@@ -16,7 +16,7 @@ class Grid extends React.Component {
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
-
+      winner: false,
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -45,34 +45,35 @@ class Grid extends React.Component {
         return this.state.checkedBtnPlayer2.includes(elem);
       });
       if (containsAll === true) {
-
         for (let i = 0; i < line.length; i++) {
-            
-            let id = line[i];
-            let allButtons = document.querySelectorAll('input');
+          let id = line[i];
+          let allButtons = document.querySelectorAll("input");
 
-            allButtons.forEach(button => {
-                if (button.id === id) {
-                    setInterval(() => {
-                        button.style.background = "red";
-                    }, 100);
+          allButtons.forEach((button) => {
+            if (button.id === id) {
+              setInterval(() => {
+                button.style.background = "red";
+              }, 100);
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 8000);
+              setInterval(() => {
+                button.style.background = "white";
+              }, 8000);
 
-                    setInterval(() => {
-                        button.style.background = "red";
-                    }, 1000);
+              setInterval(() => {
+                button.style.background = "red";
+              }, 1000);
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 1200);
-                }
-            })
-            
+              setInterval(() => {
+                button.style.background = "white";
+              }, 1200);
+            }
+          });
         }
-        this.setState({ displayP2Won: "initial", displayRestart: "initial" });
+        this.setState({
+          displayP2Won: "initial",
+          displayRestart: "initial",
+          winner: true,
+        });
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
       }
       return null;
@@ -85,34 +86,36 @@ class Grid extends React.Component {
         return this.state.checkedBtnPlayer1.includes(elem);
       });
       if (containsAll === true) {
-
         for (let i = 0; i < line.length; i++) {
-            
-            let id = line[i];
-            let allButtons = document.querySelectorAll('input');
+          let id = line[i];
+          let allButtons = document.querySelectorAll("input");
 
-            allButtons.forEach(button => {
-                if (button.id === id) {
-                    setInterval(() => {
-                        button.style.background = "green";
-                    }, 100);
+          allButtons.forEach((button) => {
+            if (button.id === id) {
+              setInterval(() => {
+                button.style.background = "green";
+              }, 100);
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 8000);
+              setInterval(() => {
+                button.style.background = "white";
+              }, 8000);
 
-                    setInterval(() => {
-                        button.style.background = "green";
-                    }, 1000);
+              setInterval(() => {
+                button.style.background = "green";
+              }, 1000);
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 1200);
-                }
-            })
-            
+              setInterval(() => {
+                button.style.background = "white";
+              }, 1200);
+            }
+          });
         }
-        this.setState({ displayP1Won: "initial", displayRestart: "initial" });
+        this.setState({
+          displayP1Won: "initial",
+          displayRestart: "initial",
+          displayDraw: "none",
+          winner: true,
+        });
         return console.log(" Bravo ! Player 1 a gagné ", containsAll);
       }
       return null;
@@ -145,8 +148,7 @@ class Grid extends React.Component {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
             this.checkIfWinP2();
-          }); 
-
+          });
         }
       );
       //   PLAYER 1
@@ -162,7 +164,6 @@ class Grid extends React.Component {
             e.target.value = this.state.player1;
             this.checkIfWinP1();
           });
-
         }
       );
     }
@@ -170,7 +171,7 @@ class Grid extends React.Component {
     copyClickedBtns.push(e.target.id);
     this.setState({ clickedBtns: copyClickedBtns });
     console.log(this.state.clickedBtns);
-    if (this.state.clickedBtns.length === 9) {
+    if (this.state.clickedBtns.length === 9 && this.state.winner === false) {
       this.setState({ displayRestart: "initial", displayDraw: "initial" });
       console.log("match nul");
     }
