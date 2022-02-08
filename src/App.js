@@ -5,7 +5,7 @@ import Grid from "./components/Grid";
 // CSS
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GridLy from "./components/GridLy";
+import GridLy from "./components/Grid";
 
 class App extends React.Component {
   constructor() {
