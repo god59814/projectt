@@ -13,14 +13,14 @@ class GridLy extends React.Component {
       checkedBtnPlayer2: [],
       //   winningLine: ["0", "1", "2"], //1st winning line
       winningLines: [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
+        ["0", "1", "2"],
+        ["3", "4", "5"],
+        ["6", "7", "8"],
+        ["0", "3", "6"],
+        ["1", "4", "7"],
+        ["2", "5", "8"],
+        ["0", "4", "8"],
+        ["2", "4", "6"],
       ],
     };
 
@@ -32,11 +32,11 @@ class GridLy extends React.Component {
   //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
   checkWinner() {
     this.state.winningLines.map((line) => {
-      console.log(line);
+      //   console.log(line);
       if (this.state.checkedBtnPlayer1 === line) {
         return console.log(" Bravo ! Player 1 a gagné ");
       }
-      return console.log(this.state.checkedBtnPlayer1, line);
+      return console.log("Compare :", this.state.checkedBtnPlayer1, line);
     });
 
     //Returns a bolean : if the 2nd array includes the 1st array, it returns True. If the 2nd array does not include the 1st array, it returns False:
