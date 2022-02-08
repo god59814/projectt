@@ -6,6 +6,7 @@ import GridLy from "./components/GridLy";
 // CSS
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import GridLy from "./components/Grid";
 
 class App extends React.Component {
   constructor() {
