@@ -3,6 +3,7 @@ import React from "react";
 import Button from "./Button";
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+// import ButtonLy from "./ButtonLy";
 
 class Grid extends React.Component {
   constructor() {
@@ -12,7 +13,6 @@ class Grid extends React.Component {
       player1: "X",
       player2: "O",
       // clickedBtns: [],
-      // defaultValue: "",
       // buttons: [null, null, null, null, null, null, null, null, null],
       buttons: Array(9).fill(null),
       // Array est un tableau de 9 elements, fill = remplir -> null
@@ -45,21 +45,23 @@ class Grid extends React.Component {
     return (
       <article>
         <div>
-          {this.renderButton(0)}
-          {this.renderButton(1)}
-          {this.renderButton(2)}
+          <Button />
+          <Button />
+          <Button />
         </div>
         <div>
-          {this.renderButton(3)}
-          {this.renderButton(4)}
-          {this.renderButton(5)}
+          <Button />
+          <Button />
+          <Button />
         </div>
         <div>
-          {this.renderButton(6)}
-          {this.renderButton(7)}
-          {this.renderButton(8)}
+          <Button />
+          <Button />
+          <Button />
         </div>
       </article>
+
+
     );
   }
 }
