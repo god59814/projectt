@@ -16,8 +16,7 @@ class Grid extends React.Component {
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
-      // winningLine : ["0","1","2"], //1st winning line
-      // testWinning : ["0", 2, 7,"1", "4", "2"] // Test array containing winningLine
+
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -38,17 +37,6 @@ class Grid extends React.Component {
   }
 
   //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
-  //   checkWinner(){
-  //     const containsAll = this.state.winningLine.every(element => {
-  //         return this.state.checkedBtnPlayer1.includes(element);
-  //       });
-
-  //       //Returns a bolean : if the 2nd array includes the 1st array, it returns True. If the 2nd array does not include the 1st array, it returns False:
-  //       if (containsAll === true) {
-
-  //           return console.log(" Bravo ! Player 1 a gagné ", containsAll);
-  //       }
-  //   }
 
   checkIfWinP2() {
     //   console.log(line);
@@ -57,6 +45,33 @@ class Grid extends React.Component {
         return this.state.checkedBtnPlayer2.includes(elem);
       });
       if (containsAll === true) {
+
+        for (let i = 0; i < line.length; i++) {
+            
+            let id = line[i];
+            let allButtons = document.querySelectorAll('input');
+
+            allButtons.forEach(button => {
+                if (button.id === id) {
+                    setInterval(() => {
+                        button.style.background = "red";
+                    }, 100);
+
+                    setInterval(() => {
+                        button.style.background = "white";
+                    }, 8000);
+
+                    setInterval(() => {
+                        button.style.background = "red";
+                    }, 1000);
+
+                    setInterval(() => {
+                        button.style.background = "white";
+                    }, 1200);
+                }
+            })
+            
+        }
         this.setState({ displayP2Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
       }
@@ -70,6 +85,33 @@ class Grid extends React.Component {
         return this.state.checkedBtnPlayer1.includes(elem);
       });
       if (containsAll === true) {
+
+        for (let i = 0; i < line.length; i++) {
+            
+            let id = line[i];
+            let allButtons = document.querySelectorAll('input');
+
+            allButtons.forEach(button => {
+                if (button.id === id) {
+                    setInterval(() => {
+                        button.style.background = "green";
+                    }, 100);
+
+                    setInterval(() => {
+                        button.style.background = "white";
+                    }, 8000);
+
+                    setInterval(() => {
+                        button.style.background = "green";
+                    }, 1000);
+
+                    setInterval(() => {
+                        button.style.background = "white";
+                    }, 1200);
+                }
+            })
+            
+        }
         this.setState({ displayP1Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 1 a gagné ", containsAll);
       }
@@ -103,8 +145,8 @@ class Grid extends React.Component {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
             this.checkIfWinP2();
-          }); //Add fonction flechée
-          // console.log(e.target.id);
+          }); 
+
         }
       );
       //   PLAYER 1
@@ -120,7 +162,7 @@ class Grid extends React.Component {
             e.target.value = this.state.player1;
             this.checkIfWinP1();
           });
-          // console.log("id: ",e.target.id);
+
         }
       );
     }
