@@ -156,40 +156,55 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <section>
-        <p style={{ display: this.state.display }}>
-          Box already ticked ! Please, Select another one
-        </p>
-        <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
-        <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
-        <p style={{ display: this.state.displayDraw }}>
-          It's a draw... Play again?
-        </p>
-        <input
-          style={{ display: this.state.displayRestart }}
-          type="button"
-          value="Restart"
-          onClick={this.handleReset}
-        />
-
-        <div style={{ display: "flex" }}>
-          <Button onclick={this.handleClick} id="0" />
-          <Button onclick={this.handleClick} id="1" />
-          <Button onclick={this.handleClick} id="2" />
+      <section className="d-flex">
+        <div className="winningScenarios">
+          <p style={{ display: this.state.display }}>
+            Box already ticked ! Please, Select another one
+          </p>
+          <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
+          <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
+          <p style={{ display: this.state.displayDraw }}>
+            It's a draw... Play again?
+          </p>
+          <input
+            style={{ display: this.state.displayRestart }}
+            type="button"
+            value="Restart"
+            onClick={this.handleReset}
+          />
         </div>
-
-        <div style={{ display: "flex" }}>
-          <Button onclick={this.handleClick} id="3" />
-          <Button onclick={this.handleClick} id="4" />
-          <Button onclick={this.handleClick} id="5" />
+        <div className="players">
+          {this.state.player1Turn ? (
+            <p>Player1 turn : X</p>
+          ) : (
+            <p>Player2 turn : O</p>
+          )}
         </div>
+        <div className="grid">
+          <div style={{ display: "flex" }}>
+            <Button onclick={this.handleClick} id="0" />
+            <Button onclick={this.handleClick} id="1" />
+            <Button onclick={this.handleClick} id="2" />
+          </div>
 
-        <div style={{ display: "flex" }}>
-          <Button onclick={this.handleClick} id="6" />
-          <Button onclick={this.handleClick} id="7" />
-          <Button onclick={this.handleClick} id="8" />
+          <div style={{ display: "flex" }}>
+            <Button onclick={this.handleClick} id="3" />
+            <Button onclick={this.handleClick} id="4" />
+            <Button onclick={this.handleClick} id="5" />
+          </div>
+
+          <div style={{ display: "flex" }}>
+            <Button onclick={this.handleClick} id="6" />
+            <Button onclick={this.handleClick} id="7" />
+            <Button onclick={this.handleClick} id="8" />
+          </div>
+          <input
+            className={`btn btn-dark m-1`}
+            type="reset"
+            value="RESET"
+            onClick={this.handleReset}
+          />
         </div>
-        <input type="reset" value="RESET" onClick={this.handleReset} />
       </section>
     );
   }
