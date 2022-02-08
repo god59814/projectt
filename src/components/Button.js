@@ -8,7 +8,8 @@ class Button extends React.Component {
         this.state = {};
 
    
-      }      
+      }
+      
       
     
 
@@ -22,7 +23,6 @@ class Button extends React.Component {
                 style ={{display : "block"}}
                 onClick={this.props.onclick}
                 id={this.props.id}></input>
-                
                 </div>
         )
     }
