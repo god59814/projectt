@@ -5,7 +5,7 @@ import React from "react";
 // CSS
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GridLy from "./components/GridLy";
+import Grid from "./components/Grid";
 
 class App extends React.Component {
   constructor() {
@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <section className="d-flex justify-content-center align-items-center border">
         {/* <Grid /> */}
-        <GridLy/>
+        <Grid/>
       </section>
     );
   }
