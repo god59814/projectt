@@ -6,13 +6,8 @@ class Button extends React.Component {
     constructor() {
         super();
         this.state = {};
-
-   
       }
       
-      
-    
-
     render() {
 
         return(
@@ -27,7 +22,5 @@ class Button extends React.Component {
         )
     }
 }
-
-
 
 export default Button;
