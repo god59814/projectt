@@ -4,6 +4,18 @@
 }
 
 p {
+  font-size: 1.2em;
+}
+
+.red {
+  background-color: rgba(175, 26, 26, 0.4);
+}
+
+.green {
+  background-color: rgba(26, 175, 73, 0.5);
+}
+
+.warning {
   font-size: 1.5em;
   background-color: rgba(175, 26, 26, 0.726);
   font-weight: 500;
