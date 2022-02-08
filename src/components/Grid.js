@@ -128,6 +128,9 @@ class Grid extends React.Component {
         button.value = "";
       }
     });
+    this.setState({ checkedBtnPlayer1: [] });
+    this.setState({ checkedBtnPlayer2: [] });
+    this.setState({ player1Turn: true });
     console.log("RESET");
   }
 
