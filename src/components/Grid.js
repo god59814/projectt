@@ -16,8 +16,7 @@ class Grid extends React.Component {
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
-      // winningLine : ["0","1","2"], //1st winning line
-      // testWinning : ["0", 2, 7,"1", "4", "2"] // Test array containing winningLine
+
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -73,6 +72,7 @@ class Grid extends React.Component {
             })
             
         }
+        this.setState({ displayP2Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
       }
       return null;
@@ -112,6 +112,7 @@ class Grid extends React.Component {
             })
             
         }
+        this.setState({ displayP1Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 1 a gagné ", containsAll);
       }
       return null;
@@ -199,31 +200,25 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <section className="d-flex">
-        <div className="winningScenarios">
-          <p style={{ display: this.state.display }}>
-            Box already ticked ! Please, Select another one
-          </p>
-          <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
-          <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
-          <p style={{ display: this.state.displayDraw }}>
-            It's a draw... Play again?
-          </p>
+      <section className="row justify-content-center">
+        <div className="players col border border-warning rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+          {this.state.player1Turn ? (
+            <p>
+              Your turn <span className="red">Player1</span> : X
+            </p>
+          ) : (
+            <p>
+              Your turn <span className="green">Player2</span> : O
+            </p>
+          )}
           <input
-            style={{ display: this.state.displayRestart }}
-            type="button"
-            value="Restart"
+            className={`btn btn-dark m-1`}
+            type="reset"
+            value="RESET"
             onClick={this.handleReset}
           />
         </div>
-        <div className="players">
-          {this.state.player1Turn ? (
-            <p>Player1 turn : X</p>
-          ) : (
-            <p>Player2 turn : O</p>
-          )}
-        </div>
-        <div className="grid">
+        <div className="grid col border border-success rounded p-3 m-2">
           <div style={{ display: "flex" }}>
             <Button onclick={this.handleClick} id="0" />
             <Button onclick={this.handleClick} id="1" />
@@ -241,10 +236,21 @@ class Grid extends React.Component {
             <Button onclick={this.handleClick} id="7" />
             <Button onclick={this.handleClick} id="8" />
           </div>
+        </div>
+        <div className="winningScenarios col border border-danger rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+          <p className="warning" style={{ display: this.state.display }}>
+            Box already ticked ! Please, Select another one
+          </p>
+          <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
+          <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
+          <p style={{ display: this.state.displayDraw }}>
+            It's a draw... Play again?
+          </p>
           <input
-            className={`btn btn-dark m-1`}
-            type="reset"
-            value="RESET"
+            className={`btn btn-dark m-1 ms-2`}
+            style={{ display: this.state.displayRestart }}
+            type="button"
+            value="Restart"
             onClick={this.handleReset}
           />
         </div>
