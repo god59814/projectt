@@ -9,7 +9,10 @@ class Grid extends React.Component {
       player2: "O",
       player1Turn: true,
       display: "none",
-      reset: false,
+      displayP1Won: "none",
+      displayP2Won: "none",
+      displayDraw: "none",
+      displayRestart: "none",
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
@@ -119,18 +122,35 @@ class Grid extends React.Component {
         }
       );
     }
+    const copyClickedBtns = this.state.clickedBtns;
+    copyClickedBtns.push(e.target.id);
+    this.setState({ clickedBtns: copyClickedBtns });
+    console.log(this.state.clickedBtns);
+    if (this.state.clickedBtns.length === 9) {
+      this.setState({ displayRestart: "initial", displayDraw: "initial" });
+      console.log("match nul");
+    }
   }
 
   handleReset() {
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET") {
+      if (button.value !== "RESET" || button.value !== "Rejouer") {
         button.value = "";
       }
     });
-    this.setState({ checkedBtnPlayer1: [] });
-    this.setState({ checkedBtnPlayer2: [] });
-    this.setState({ player1Turn: true });
+    this.setState({
+      checkedBtnPlayer1: [],
+      checkedBtnPlayer2: [],
+      clickedBtns: [],
+      player1Turn: true,
+    });
+    this.setState({
+      displayP2Won: "none",
+      displayP1Won: "none",
+      displayDraw: "none",
+      displayRestart: "none",
+    });
     console.log("RESET");
   }
 
@@ -140,6 +160,17 @@ class Grid extends React.Component {
         <p style={{ display: this.state.display }}>
           Box already ticked ! Please, Select another one
         </p>
+        <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
+        <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
+        <p style={{ display: this.state.displayDraw }}>
+          It's a draw... Play again?
+        </p>
+        <input
+          style={{ display: this.state.displayRestart }}
+          type="button"
+          value="Restart"
+          onClick={this.handleReset}
+        />
 
         <div style={{ display: "flex" }}>
           <Button onclick={this.handleClick} id="0" />
@@ -158,7 +189,7 @@ class Grid extends React.Component {
           <Button onclick={this.handleClick} id="7" />
           <Button onclick={this.handleClick} id="8" />
         </div>
-        <input type="reset" value="RESET" onClick={this.handleReset}></input>
+        <input type="reset" value="RESET" onClick={this.handleReset} />
       </section>
     );
   }
