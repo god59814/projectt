@@ -13,12 +13,24 @@ class Grid extends React.Component {
             checkedBtnPlayer1 : [],
             checkedBtnPlayer2 : [],
             winningLine : ["0","1","2"], //1st winning line
-            testWinning : ["0", 2, 7,"1", "4", "2"] // Test array containing winningLine
+            testWinning : ["0", 2, 7,"1", "4", "2"], // Test array containing winningLine
+
         };
 
         //Bind functions
         this.handleClick = this.handleClick.bind(this);
         this.checkWinner = this.checkWinner.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+      }
+
+      handleReset(){
+          
+          let clearbuttons = document.querySelectorAll('input');
+          clearbuttons.forEach(button => {
+             if (button.value !== "RESET") {
+                 button.value = ''};
+
+             })   
       }
 
       //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
@@ -61,7 +73,7 @@ class Grid extends React.Component {
                         console.log("test Array player2: ",this.state.checkedBtnPlayer2);
                         e.target.value = this.state.player2;
                     }) //Add fonction flechée 
-                    // console.log(e.target.id);
+                   
                 }
                 );
                 
@@ -74,19 +86,20 @@ class Grid extends React.Component {
                     this.setState({checkedBtnPlayer1 : copyArray1})
                     console.log("test Array player1: ",this.state.checkedBtnPlayer1);                
                     e.target.value = this.state.player1;
-                    // console.log("id: ",e.target.id);
+                    
                 });
                 
             } 
-            this.checkWinner();    
-          
+            this.checkWinner();  
+            
+
       }
 
       render(){
 
         return (
 
-            <section>
+            <form>
                 <p style = {{display : this.state.display}}>Box already ticked ! Please, Select another one</p>
 
                 <div style ={{display : "flex",}}>
@@ -107,7 +120,8 @@ class Grid extends React.Component {
                 <Button onclick={this.handleClick} id="8"/>
                 </div>
 
-          </section>
+                <input type="reset" value="RESET" onClick={this.handleReset}></input>
+          </form>
         )
       }
 }
