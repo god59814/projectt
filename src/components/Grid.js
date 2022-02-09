@@ -108,8 +108,7 @@ class Grid extends React.Component {
         }
       );
     }
-
-    // PLAYER 2
+    //PLAYER 2
     if (this.state.player1Turn === false) {
       const copyArray2 = [...this.state.checkedBtnPlayer2, e.target.id];
       this.setState(
@@ -120,11 +119,12 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer2: copyArray2 }, () => {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
+            e.target.className = "styleO m-1 border"; //style for O
             this.checkIfWinP2();
           });
         }
       );
-      //   PLAYER 1
+      //PLAYER 1
     } else if (this.state.player1Turn === true) {
       const copyArray1 = [...this.state.checkedBtnPlayer1, e.target.id];
       this.setState(
@@ -135,6 +135,7 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer1: copyArray1 }, () => {
             console.log("test Array player1: ", this.state.checkedBtnPlayer1);
             e.target.value = this.state.player1;
+            e.target.className = "styleX m-1 border"; //style for X
             this.checkIfWinP1();
           });
         }
@@ -184,95 +185,98 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <section className="row justify-content-center">
-        <div className="players col border border-warning rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
-          {this.state.player1Turn ? (
-            <p>
-              Your turn <span className="red">Player1</span> : X
-            </p>
-          ) : (
-            <p>
-              Your turn <span className="green">Player2</span> : O
-            </p>
-          )}
-          <input
-            className={`btn btn-dark m-1`}
-            type="reset"
-            value="RESET"
-            onClick={this.handleReset}
-          />
-        </div>
-        <div className="grid col border border-success rounded p-3 m-2 e-disabled">
-          <div style={{ display: "flex" }}>
-            <Button
-              onclick={this.handleClick}
-              id="0"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="1"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="2"
-              disabled={this.state.disabled}
+      <section className="container-lg ">
+        <h1 className="title text-center">Tic Tac Toe</h1>
+        <div className="row justify-content-center ">
+          <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+            {this.state.player1Turn ? (
+              <p>
+                Your turn <span className="red">Player1</span> : X
+              </p>
+            ) : (
+              <p>
+                Your turn <span className="green">Player2</span> : O
+              </p>
+            )}
+            <input
+              className={`btn btn-dark m-1`}
+              type="reset"
+              value="RESET"
+              onClick={this.handleReset}
             />
           </div>
+          <div className="col-lg-5 col-md-6  order-3 order-lg-3 rounded p-3 m-2  d-flex flex-column  justify-content-center align-items-center">
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="0"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="1"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="2"
+                disabled={this.state.disabled}
+              />
+            </div>
 
-          <div style={{ display: "flex" }}>
-            <Button
-              onclick={this.handleClick}
-              id="3"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="4"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="5"
-              disabled={this.state.disabled}
-            />
-          </div>
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="3"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="4"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="5"
+                disabled={this.state.disabled}
+              />
+            </div>
 
-          <div style={{ display: "flex" }}>
-            <Button
-              onclick={this.handleClick}
-              id="6"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="7"
-              disabled={this.state.disabled}
-            />
-            <Button
-              onclick={this.handleClick}
-              id="8"
-              disabled={this.state.disabled}
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="6"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="7"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="8"
+                disabled={this.state.disabled}
+              />
+            </div>
+          </div>
+          <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+            <p className="warning" style={{ display: this.state.display }}>
+              Box already ticked ! Please, Select another one
+            </p>
+            <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
+            <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
+            <p style={{ display: this.state.displayDraw }}>
+              It's a draw... Play again?
+            </p>
+            <input
+              className={`btn btn-dark m-1 ms-2`}
+              style={{ display: this.state.displayRestart }}
+              type="button"
+              value="Restart"
+              onClick={this.handleReset}
             />
           </div>
-        </div>
-        <div className="winningScenarios col border border-danger rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
-          <p className="warning" style={{ display: this.state.display }}>
-            Box already ticked ! Please, Select another one
-          </p>
-          <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
-          <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
-          <p style={{ display: this.state.displayDraw }}>
-            It's a draw... Play again?
-          </p>
-          <input
-            className={`btn btn-dark m-1 ms-2`}
-            style={{ display: this.state.displayRestart }}
-            type="button"
-            value="Restart"
-            onClick={this.handleReset}
-          />
         </div>
       </section>
     );
