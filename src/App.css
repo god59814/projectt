@@ -21,7 +21,23 @@ p {
   font-weight: 500;
 }
 
-.test {
+.styleO {
+  /* background-color: rgb(250, 255, 240); */
+  color: green;
+  font-size: 46px;
+  font-weight: 400;
+  width: 100px;
+  height: 100px;
+  margin: 0.25%;
+}
 
-  font-size: 3em;
+.styleX{
+  /* background-color: rgb(189, 220, 247) ; */
+  color: red;
+  font-size: 46px;
+  font-weight: 400;
+  width: 100px;
+  height: 100px;
+  margin: 0.25%;
+  
 }
