@@ -9,7 +9,7 @@ class Button extends React.Component {
       }
       
     render() {
-
+     
         return(
                 <div>
 
@@ -18,6 +18,7 @@ class Button extends React.Component {
                 style ={{display : "block"}}
                 onClick={this.props.onclick}
                 id={this.props.id}></input>
+                
                 </div>
         )
     }

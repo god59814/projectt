@@ -70,7 +70,7 @@ class Grid extends React.Component {
                     }, 1200);
                 }
             })
-            
+
         }
         this.setState({ displayP2Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
@@ -199,6 +199,7 @@ class Grid extends React.Component {
   }
 
   render() {
+    
     return (
       <section className="row justify-content-center">
         <div className="players col border border-warning rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
@@ -251,9 +252,9 @@ class Grid extends React.Component {
             style={{ display: this.state.displayRestart }}
             type="button"
             value="Restart"
-            onClick={this.handleReset}
           />
         </div>
+        
       </section>
     );
   }
