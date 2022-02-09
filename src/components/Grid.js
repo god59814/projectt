@@ -57,7 +57,7 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
-              button.style.background = "#FF0A0A";
+              button.style.background = "rgba(26, 175, 73, 0.5)";
             }
           });
         }
@@ -85,7 +85,7 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
-              button.style.background = "#67BB3A";
+              button.style.background = "rgba(175, 26, 26, 0.4)";
             }
           });
         }
