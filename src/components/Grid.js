@@ -1,3 +1,4 @@
+// ---------------------------------- IMPORTS -----------------------------------
 import React from "react";
 import Button from "./Button";
 import { Icon } from '@iconify/react'; // Cats icons (Copyright Concats)
@@ -7,19 +8,24 @@ class Grid extends React.Component {
   constructor() {
     super();
     this.state = {
-      player1: "X",
-      player2: "O",
-      player1Turn: true,
+      player1: "X", // Player 1
+      player2: "O", // Player 2
+      player1Turn: true, //Boolean to alternate between player 1 and Player 2
+
+      //Changing the display of our text in the render dynamically, 
+      //according to the game scenarios :
       display: "none",
       displayP1Won: "none",
       displayP2Won: "none",
       displayDraw: "none",
       displayRESTART: "none",
       clickedBtns: [],
-      checkedBtnPlayer1: [],
-      checkedBtnPlayer2: [],
+      checkedBtnPlayer1: [], //Player 1's history of checked buttons
+      checkedBtnPlayer2: [], //Player 2's history of checked buttons
       disabled: false,
-      winner: false,
+      winner: false, //Boolean to check if a player has won 
+
+      //List of the winning combination lines : 
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -39,13 +45,20 @@ class Grid extends React.Component {
     this.handleReset = this.handleReset.bind(this);
   }
 
-  //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
+  // ---------------------------------- FUNCTIONS -----------------------------------
 
+  //Creating 2 functions that will create our users history of checked buttons (checkedBtnPlayer1 and checkedBtnPlayer2 arrays) and check if they contain any winning line at at every turn : the first user that has any of the winning lines wins and the game ends.
+  
+  //Function to check if Player 2 has won : 
   checkIfWinP2() {
+
+    //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 2's clicked buttons (checkedBtnPlayer2) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
         return this.state.checkedBtnPlayer2.includes(elem);
       });
+
+      //If the variable containsAll returns True, a winning notification get displayed in the page :
       if (containsAll === true) {
         this.setState({
           displayP2Won: "initial",
@@ -53,6 +66,7 @@ class Grid extends React.Component {
           displayDraw: "none",
           winner: true,
         });
+        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into green : 
         for (let i = 0; i < line.length; i++) {
           let id = line[i];
           let allButtons = document.querySelectorAll("input");
@@ -68,8 +82,10 @@ class Grid extends React.Component {
       return null;
     });
   }
-
+  //Function to check if Player 1 has won : 
   checkIfWinP1() {
+
+    //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 1's clicked buttons (checkedBtnPlayer1) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
         return this.state.checkedBtnPlayer1.includes(elem);
@@ -81,6 +97,8 @@ class Grid extends React.Component {
           displayDraw: "none",
           winner: true,
         });
+
+        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into red : 
         for (let i = 0; i < line.length; i++) {
           let id = line[i];
           let allButtons = document.querySelectorAll("input");
@@ -303,7 +321,6 @@ class Grid extends React.Component {
       </section>
     );
   }
-  
 }
 
 export default Grid;
