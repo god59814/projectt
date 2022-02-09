@@ -1,8 +1,7 @@
 // ---------------------------------- IMPORTS -----------------------------------
 import React from "react";
 import Button from "./Button";
-import { Icon } from '@iconify/react'; // Cats icons (Copyright Concats)
-
+import { Icon } from "@iconify/react"; // Cats icons (Copyright Concats)
 
 class Grid extends React.Component {
   constructor() {
@@ -12,7 +11,7 @@ class Grid extends React.Component {
       player2: "O", // Player 2
       player1Turn: true, //Boolean to alternate between player 1 and Player 2
 
-      //Changing the display of our text in the render dynamically, 
+      //Changing the display of our text in the render dynamically,
       //according to the game scenarios :
       display: "none",
       displayP1Won: "none",
@@ -23,9 +22,9 @@ class Grid extends React.Component {
       checkedBtnPlayer1: [], //Player 1's history of checked buttons
       checkedBtnPlayer2: [], //Player 2's history of checked buttons
       disabled: false,
-      winner: false, //Boolean to check if a player has won 
+      winner: false, //Boolean to check if a player has won
 
-      //List of the winning combination lines : 
+      //List of the winning combination lines :
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -48,10 +47,9 @@ class Grid extends React.Component {
   // ---------------------------------- FUNCTIONS -----------------------------------
 
   //Creating 2 functions that will create our users history of checked buttons (checkedBtnPlayer1 and checkedBtnPlayer2 arrays) and check if they contain any winning line at at every turn : the first user that has any of the winning lines wins and the game ends.
-  
-  //Function to check if Player 2 has won : 
-  checkIfWinP2() {
 
+  //Function to check if Player 2 has won :
+  checkIfWinP2() {
     //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 2's clicked buttons (checkedBtnPlayer2) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
@@ -66,7 +64,7 @@ class Grid extends React.Component {
           displayDraw: "none",
           winner: true,
         });
-        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into green : 
+        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into green :
         for (let i = 0; i < line.length; i++) {
           let id = line[i];
           let allButtons = document.querySelectorAll("input");
@@ -82,9 +80,8 @@ class Grid extends React.Component {
       return null;
     });
   }
-  //Function to check if Player 1 has won : 
+  //Function to check if Player 1 has won :
   checkIfWinP1() {
-
     //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 1's clicked buttons (checkedBtnPlayer1) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
@@ -98,7 +95,7 @@ class Grid extends React.Component {
           winner: true,
         });
 
-        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into red : 
+        //Creating a loop that will check every button : if it's part of the winning line, the background color turns into red :
         for (let i = 0; i < line.length; i++) {
           let id = line[i];
           let allButtons = document.querySelectorAll("input");
@@ -123,7 +120,8 @@ class Grid extends React.Component {
         {
           display: "initial",
         },
-        () => { //Creating a setTimeOut method to remove the error message after 2 seconds : 
+        () => {
+          //Creating a setTimeOut method to remove the error message after 2 seconds :
           setTimeout(() => {
             this.setState({ display: "none" });
           }, 1900);
@@ -132,7 +130,7 @@ class Grid extends React.Component {
     }
     //---------------- PLAYER 2 -----------------
 
-    // Creating a condition to check whose turn it is (Player1's turn or Player2's turn): if the boolean Player1Turn is true, it means that the next move will be a "X" for Player 1. If Player1Turn is false, the next move will be a "O" for Player 2: 
+    // Creating a condition to check whose turn it is (Player1's turn or Player2's turn): if the boolean Player1Turn is true, it means that the next move will be a "X" for Player 1. If Player1Turn is false, the next move will be a "O" for Player 2:
 
     if (this.state.player1Turn === false) {
       const copyArray2 = [...this.state.checkedBtnPlayer2, e.target.id];
@@ -170,8 +168,8 @@ class Grid extends React.Component {
     copyClickedBtns.push(e.target.id); //Adding the last clicked button to our copy array
     this.setState({ clickedBtns: copyClickedBtns }); // replacing our clicked buttons array with our updated copyArray
 
-    // Checking if the clicked buttons array is full (i.e, if it contains oll of our button) and if we do not have ana winner : if so, we get a draw and the game is over. => a "RESTART" button is displayed 
-    
+    // Checking if the clicked buttons array is full (i.e, if it contains oll of our button) and if we do not have ana winner : if so, we get a draw and the game is over. => a "RESTART" button is displayed
+
     if (this.state.clickedBtns.length === 9 && this.state.winner === false) {
       this.setState({ displayRESTART: "initial", displayDraw: "initial" });
       console.log("match nul");
@@ -190,9 +188,9 @@ class Grid extends React.Component {
   //Function that resets our buttons and elements at the end of a round  :
   handleReset() {
     this.setState({ disabled: false });
-    let clearbuttons = document.querySelectorAll("input"); //we select every input 
+    let clearbuttons = document.querySelectorAll("input"); //we select every input
 
-    //If the inputs dont contain "RESET" nor "RESTART" we reset their value : 
+    //If the inputs dont contain "RESET" nor "RESTART" we reset their value :
     clearbuttons.forEach((button) => {
       if (button.value !== "RESET" && button.value !== "RESTART") {
         button.value = "";
@@ -218,19 +216,24 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <section className="container-lg ">
-
+      <section className="container-lg pt-4">
         {/* TITLE  */}
-        <h1 className="title text-center display-2">T<span className="span-title">i</span>c T<span className="span-title-red">a</span>c <span className="span-bg-black"> Toe</span></h1>
+        <h1 className="title text-center display-2">
+          T<span className="span-title">i</span>c T
+          <span className="span-title-red">a</span>c{" "}
+          <span className="span-bg-black"> Toe</span>
+        </h1>
         <div className="row justify-content-center ">
           <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
             {this.state.player1Turn ? (
               <p>
-                Your turn <span className="red">Player1</span> : <span className="span-title-red ">X</span> 
+                Your turn <span className="red">Player1</span> :{" "}
+                <span className="span-title-red ">X</span>
               </p>
             ) : (
               <p>
-                Your turn <span className="green">Player2</span> :<span className="span-title">O</span> 
+                Your turn <span className="green">Player2</span> :{" "}
+                <span className="span-title">O</span>
               </p>
             )}
             <input
@@ -314,20 +317,24 @@ class Grid extends React.Component {
           </div>
         </div>
         <div className="row div-warning">
-          <p className="warning align-center" style={{ display: this.state.display }}>
-                Box already ticked ! Please, select another one.
-              </p>
+          <p
+            className="warning align-center"
+            style={{ display: this.state.display }}
+          >
+            Box already ticked ! Please, select another one.
+          </p>
         </div>
 
         <div className="row div-concats">
-          <p className="align-center concats"> &copy; Made by Les Concats 
-          <br></br>
-           <Icon icon="emojione:cat-face"  inline={true} className="cat"/> 
-          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
-          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
-          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
-           </p>
-          
+          <p className="align-center concats">
+            {" "}
+            &copy; Made by Les Concats
+            <br></br>
+            <Icon icon="emojione:cat-face" inline={true} className="cat" />
+            <Icon icon="emojione:cat-face" inline={true} className="cat" />
+            <Icon icon="emojione:cat-face" inline={true} className="cat" />
+            <Icon icon="emojione:cat-face" inline={true} className="cat" />
+          </p>
         </div>
       </section>
     );

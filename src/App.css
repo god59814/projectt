@@ -16,7 +16,7 @@ p {
 }
 
 .span-title {
-  color: rgba(26, 175, 73, 0.87)
+  color: rgba(26, 175, 73, 0.87);
 }
 
 .span-title-red {
@@ -26,7 +26,7 @@ p {
 .span-bg-black {
   background-color: black;
   color: white;
-  padding: .1%;
+  padding: 0.1%;
 }
 
 .warning {
@@ -46,7 +46,7 @@ p {
   margin: 0.25%;
 }
 
-.styleX{
+.styleX {
   /* background-color: rgb(189, 220, 247) ; */
   color: red;
   font-size: 46px;
@@ -66,13 +66,10 @@ p {
 
 .div-concats {
   display: flex !important;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .cat {
   font-size: 1.3em;
-  margin-left: .3%;
+  margin-left: 0.3%;
 }
-
-
-
