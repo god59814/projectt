@@ -165,7 +165,7 @@ class Grid extends React.Component {
     this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET" && button.value !== "Rejouer") {
+      if (button.value !== "RESET" && button.value !== "Restart") {
         button.value = "";
         button.style.background = "transparent";
       }
