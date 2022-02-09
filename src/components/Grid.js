@@ -57,6 +57,10 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
+<<<<<<< HEAD
+=======
+              button.style.background = "#FF0A0A";
+>>>>>>> 06fa781aa2a430bd54982f3ad29fb7b71274b4fc
             }
           });
         }
@@ -84,6 +88,10 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
+<<<<<<< HEAD
+=======
+              button.style.background = "#67BB3A";
+>>>>>>> 06fa781aa2a430bd54982f3ad29fb7b71274b4fc
             }
           });
         }
@@ -163,8 +171,9 @@ class Grid extends React.Component {
     this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET" || button.value !== "Rejouer") {
+      if (button.value !== "RESET" && button.value !== "Rejouer") {
         button.value = "";
+        button.style.background = "transparent";
       }
     });
     this.setState({
@@ -180,6 +189,7 @@ class Grid extends React.Component {
       displayDraw: "none",
       displayRestart: "none",
     });
+
     console.log("RESET");
   }
 
