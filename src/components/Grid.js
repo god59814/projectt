@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify/react'; // Cats icons (Copyright Concats)
+
 
 class Grid extends React.Component {
   constructor() {
