@@ -29,6 +29,7 @@ Here are the frameworks/libraries used for this project:
 
 React.js
 Bootstrap
+Iconify
 
 # Contributors 
 @pauline-wim
