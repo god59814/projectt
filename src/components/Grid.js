@@ -187,10 +187,12 @@ class Grid extends React.Component {
     }
   }
 
-  
+  //Function that resets our buttons and elements at the end of a round  :
   handleReset() {
     this.setState({ disabled: false });
-    let clearbuttons = document.querySelectorAll("input");
+    let clearbuttons = document.querySelectorAll("input"); //we select every input 
+
+    //If the inputs dont contain "RESET" nor "RESTART" we reset their value : 
     clearbuttons.forEach((button) => {
       if (button.value !== "RESET" && button.value !== "RESTART") {
         button.value = "";
@@ -217,6 +219,8 @@ class Grid extends React.Component {
   render() {
     return (
       <section className="container-lg ">
+
+        {/* TITLE  */}
         <h1 className="title text-center display-2">T<span className="span-title">i</span>c T<span className="span-title-red">a</span>c <span className="span-bg-black"> Toe</span></h1>
         <div className="row justify-content-center ">
           <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
