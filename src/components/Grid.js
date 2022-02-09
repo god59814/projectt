@@ -203,7 +203,7 @@ class Grid extends React.Component {
               </p>
             )}
             <input
-              className={`btn btn-dark m-1`}
+              className={`btn btn-dark m-1 col-12`}
               type="reset"
               value="RESET"
               onClick={this.handleReset}
@@ -274,7 +274,7 @@ class Grid extends React.Component {
               It's a draw... Play again?
             </p>
             <input
-              className={`btn btn-dark m-1 ms-2`}
+              className={`btn btn-dark m-1 ms-2 col-12`}
               style={{ display: this.state.displayRestart }}
               type="button"
               value="Restart"
