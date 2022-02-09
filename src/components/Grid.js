@@ -224,7 +224,7 @@ class Grid extends React.Component {
           <span className="span-bg-black"> Toe</span>
         </h1>
         <div className="row justify-content-center ">
-          <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-lg-3 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
             {this.state.player1Turn ? (
               <p>
                 Your turn <span className="red">Player1</span> :{" "}
@@ -237,7 +237,7 @@ class Grid extends React.Component {
               </p>
             )}
             <input
-              className={`btn btn-dark m-1 col-lg-12 col-md-6 col-sm-6 col-6`}
+              className={`btn btn-dark m-1 col-lg-7 col-md-6 col-sm-6 col-6`}
               type="reset"
               value="RESET"
               onClick={this.handleReset}
@@ -301,14 +301,14 @@ class Grid extends React.Component {
                Box already ticked ! Please, select another one.
             </p> */}
           </div>
-          <div className="col-lg-2 col-md-6 order-3 order-lg-3 rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-lg-3 col-md-6 order-3 order-lg-3 rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
             <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
             <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
             <p style={{ display: this.state.displayDraw }}>
               It's a draw... Play again?
             </p>
             <input
-              className={`btn m-1 col-lg-12 col-md-6 col-sm-6 col-6 btn-danger`}
+              className={`btn m-1 col-lg-7 col-md-6 col-sm-6 col-6 btn-danger`}
               style={{ display: this.state.displayRESTART }}
               type="button"
               value="RESTART"

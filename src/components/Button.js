@@ -10,7 +10,7 @@ class Button extends React.Component {
     return (
       <div>
         <input
-          className={`btn btn-light m-1 border round-4 square`}
+          className={`btn m-1 border rounded-0 square`}
           type="button"
           style={{ display: "block" }}
           onClick={this.props.onclick}
