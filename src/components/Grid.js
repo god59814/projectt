@@ -117,20 +117,23 @@ class Grid extends React.Component {
   }
 
   handleClick(e) {
-    //If the button is already clicked, the user can't select it and gets an error message :
+    //If the button's value is not empty, it means that the button is already clicked => the user can't select it and gets an error message :
     if (e.target.value !== "") {
       return this.setState(
         {
           display: "initial",
         },
-        () => {
+        () => { //Creating a setTimeOut method to remove the error message after 2 seconds : 
           setTimeout(() => {
             this.setState({ display: "none" });
           }, 1900);
         }
       );
     }
-    //PLAYER 2
+    //---------------- PLAYER 2 -----------------
+
+    // Creating a condition to check whose turn it is (Player1's turn or Player2's turn): if the boolean Player1Turn is true, it means that the next move will be a "X" for Player 1. If Player1Turn is false, the next move will be a "O" for Player 2: 
+
     if (this.state.player1Turn === false) {
       const copyArray2 = [...this.state.checkedBtnPlayer2, e.target.id];
       this.setState(
@@ -146,7 +149,7 @@ class Grid extends React.Component {
           });
         }
       );
-      //PLAYER 1
+      //---------------- PLAYER 1 ----------------
     } else if (this.state.player1Turn === true) {
       const copyArray1 = [...this.state.checkedBtnPlayer1, e.target.id];
       this.setState(
@@ -163,16 +166,19 @@ class Grid extends React.Component {
         }
       );
     }
-    const copyClickedBtns = this.state.clickedBtns;
-    copyClickedBtns.push(e.target.id);
-    this.setState({ clickedBtns: copyClickedBtns });
-    console.log(this.state.clickedBtns);
+    const copyClickedBtns = this.state.clickedBtns; //Creating a copy of the clicked buttons's array
+    copyClickedBtns.push(e.target.id); //Adding the last clicked button to our copy array
+    this.setState({ clickedBtns: copyClickedBtns }); // replacing our clicked buttons array with our updated copyArray
+
+    // Checking if the clicked buttons array is full (i.e, if it contains oll of our button) and if we do not have ana winner : if so, we get a draw and the game is over. => a "RESTART" button is displayed 
+    
     if (this.state.clickedBtns.length === 9 && this.state.winner === false) {
       this.setState({ displayRESTART: "initial", displayDraw: "initial" });
       console.log("match nul");
     }
   }
 
+  //Checking if we have a winner : if so, the button are disabled so that the player cant keep playing.
   componentDidUpdate(_prevProps, prevState) {
     if (prevState.winner !== this.state.winner) {
       if (this.state.winner === true) {
@@ -181,6 +187,7 @@ class Grid extends React.Component {
     }
   }
 
+  
   handleReset() {
     this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input");
