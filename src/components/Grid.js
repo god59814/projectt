@@ -39,7 +39,6 @@ class Grid extends React.Component {
   //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
 
   checkIfWinP2() {
-    //   console.log(line);
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
         return this.state.checkedBtnPlayer2.includes(elem);
@@ -51,21 +50,7 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
-              setInterval(() => {
-                button.style.background = "red";
-              }, 100);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 8000);
-
-              setInterval(() => {
-                button.style.background = "red";
-              }, 1000);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 1200);
+              button.style.background = "#FF0A0A";
             }
           });
         }
@@ -93,21 +78,7 @@ class Grid extends React.Component {
 
           allButtons.forEach((button) => {
             if (button.id === id) {
-              setInterval(() => {
-                button.style.background = "green";
-              }, 100);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 8000);
-
-              setInterval(() => {
-                button.style.background = "green";
-              }, 1000);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 1200);
+              button.style.background = "#67BB3A";
             }
           });
         }
@@ -137,7 +108,7 @@ class Grid extends React.Component {
         }
       );
     }
-    // PLAYER 2
+    // PLAYER 2 
     if (this.state.player1Turn === false) {
       const copyArray2 = [...this.state.checkedBtnPlayer2, e.target.id];
       this.setState(
@@ -177,14 +148,14 @@ class Grid extends React.Component {
       this.setState({ displayRestart: "initial", displayDraw: "initial" });
       console.log("match nul");
     }
-
   }
 
   handleReset() {
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET" || button.value !== "Rejouer") {
+      if (button.value !== "RESET" && button.value !== "Rejouer") {
         button.value = "";
+        button.style.background = "transparent";
       }
     });
     this.setState({
@@ -201,17 +172,12 @@ class Grid extends React.Component {
     });
 
     console.log("RESET");
-
-    // Reset background color of winning line : 
-    // clearbuttons.forEach(button => {
-    //   clearInterval();
-    // })
-
   }
 
   render() {
     return (
       <section className="row justify-content-center">
+        <h1 className="mx-auto">TIC TAC TOE</h1>
         <div className="players col border border-warning rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
           {this.state.player1Turn ? (
             <p>
