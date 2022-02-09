@@ -12,7 +12,7 @@ class Grid extends React.Component {
       displayP1Won: "none",
       displayP2Won: "none",
       displayDraw: "none",
-      displayRestart: "none",
+      displayRESTART: "none",
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
@@ -47,7 +47,7 @@ class Grid extends React.Component {
       if (containsAll === true) {
         this.setState({
           displayP2Won: "initial",
-          displayRestart: "initial",
+          displayRESTART: "initial",
           displayDraw: "none",
           winner: true,
         });
@@ -75,7 +75,7 @@ class Grid extends React.Component {
       if (containsAll === true) {
         this.setState({
           displayP1Won: "initial",
-          displayRestart: "initial",
+          displayRESTART: "initial",
           displayDraw: "none",
           winner: true,
         });
@@ -148,7 +148,7 @@ class Grid extends React.Component {
     this.setState({ clickedBtns: copyClickedBtns });
     console.log(this.state.clickedBtns);
     if (this.state.clickedBtns.length === 9 && this.state.winner === false) {
-      this.setState({ displayRestart: "initial", displayDraw: "initial" });
+      this.setState({ displayRESTART: "initial", displayDraw: "initial" });
       console.log("match nul");
     }
   }
@@ -165,7 +165,7 @@ class Grid extends React.Component {
     this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET" && button.value !== "Restart") {
+      if (button.value !== "RESET" && button.value !== "RESTART") {
         button.value = "";
         button.style.background = "transparent";
       }
@@ -181,7 +181,7 @@ class Grid extends React.Component {
       displayP2Won: "none",
       displayP1Won: "none",
       displayDraw: "none",
-      displayRestart: "none",
+      displayRESTART: "none",
     });
 
     console.log("RESET");
@@ -263,21 +263,21 @@ class Grid extends React.Component {
                 disabled={this.state.disabled}
               />
             </div>
+            <p className="warning" style={{ display: this.state.display }}>
+               Box already ticked ! Please, select another one.
+            </p>
           </div>
           <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
-            <p className="warning" style={{ display: this.state.display }}>
-              Box already ticked ! Please, Select another one
-            </p>
             <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
             <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
             <p style={{ display: this.state.displayDraw }}>
               It's a draw... Play again?
             </p>
             <input
-              className={`btn btn-dark m-1 col-lg-12 col-md-6 col-sm-6 col-6`}
-              style={{ display: this.state.displayRestart }}
+              className={`btn m-1 col-lg-12 col-md-6 col-sm-6 col-6 btn-danger`}
+              style={{ display: this.state.displayRESTART }}
               type="button"
-              value="Restart"
+              value="RESTART"
               onClick={this.handleReset}
             />
           </div>
