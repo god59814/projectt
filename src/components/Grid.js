@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Icon } from '@iconify/react';
 
 class Grid extends React.Component {
   constructor() {
@@ -190,16 +191,16 @@ class Grid extends React.Component {
   render() {
     return (
       <section className="container-lg ">
-        <h1 className="title text-center">Tic Tac Toe</h1>
+        <h1 className="title text-center display-2">T<span className="span-title">i</span>c T<span className="span-title-red">a</span>c <span className="span-bg-black"> Toe</span></h1>
         <div className="row justify-content-center ">
           <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
             {this.state.player1Turn ? (
               <p>
-                Your turn <span className="red">Player1</span> : X
+                Your turn <span className="red">Player1</span> : <span className="span-title-red ">X</span> 
               </p>
             ) : (
               <p>
-                Your turn <span className="green">Player2</span> : O
+                Your turn <span className="green">Player2</span> :<span className="span-title">O</span> 
               </p>
             )}
             <input
@@ -263,11 +264,11 @@ class Grid extends React.Component {
                 disabled={this.state.disabled}
               />
             </div>
-            <p className="warning" style={{ display: this.state.display }}>
+            {/* <p className="warning" style={{ display: this.state.display }}>
                Box already ticked ! Please, select another one.
-            </p>
+            </p> */}
           </div>
-          <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-lg-2 col-md-6 order-3 order-lg-3 rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
             <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
             <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
             <p style={{ display: this.state.displayDraw }}>
@@ -281,6 +282,22 @@ class Grid extends React.Component {
               onClick={this.handleReset}
             />
           </div>
+        </div>
+        <div className="row div-warning">
+          <p className="warning align-center" style={{ display: this.state.display }}>
+                Box already ticked ! Please, select another one.
+              </p>
+        </div>
+
+        <div className="row div-concats">
+          <p className="align-center concats"> &copy; Made by Les Concats 
+          <br></br>
+           <Icon icon="emojione:cat-face"  inline={true} className="cat"/> 
+          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
+          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
+          <Icon icon="emojione:cat-face"  inline={true} className="cat"/>
+           </p>
+          
         </div>
       </section>
     );
