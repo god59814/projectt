@@ -285,7 +285,7 @@ class Grid extends React.Component {
       </section>
     );
   }
-
+  
 }
 
 export default Grid;
