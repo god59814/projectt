@@ -16,6 +16,7 @@ class Grid extends React.Component {
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
+      winningLights : "false",
 
       winningLines: [
         ["0", "1", "2"],
@@ -86,32 +87,40 @@ class Grid extends React.Component {
       });
       if (containsAll === true) {
 
-        for (let i = 0; i < line.length; i++) {
-            
-            let id = line[i];
-            let allButtons = document.querySelectorAll('input');
+          for (let i = 0; i < line.length; i++) {
+              
+              let id = line[i];
+              let allButtons = document.querySelectorAll('input');
+  
+              allButtons.forEach(button => {
+                  if (button.id === id) {
+                    
+                    let testinterval = setTimeout(() => {
+                        setInterval(() => {
+                            button.style.background = "green";
+                        }, 100);
+    
+                        setInterval(() => {
+                            button.style.background = "white";
+                        }, 8000);
+    
+                        setInterval(() => {
+                            button.style.background = "green";
+                        }, 1000);
 
-            allButtons.forEach(button => {
-                if (button.id === id) {
-                    setInterval(() => {
-                        button.style.background = "green";
-                    }, 100);
+                        setInterval(() => {
+                            button.style.background = "white";
+                        }, 1200);
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 8000);
+                        clearInterval(testinterval);
 
-                    setInterval(() => {
-                        button.style.background = "green";
-                    }, 1000);
+                      }, 1);
+                  }
 
-                    setInterval(() => {
-                        button.style.background = "white";
-                    }, 1200);
-                }
-            })
-            
-        }
+              })
+              
+          }
+
         this.setState({ displayP1Won: "initial", displayRestart: "initial" });
         return console.log(" Bravo ! Player 1 a gagné ", containsAll);
       }
@@ -144,6 +153,7 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer2: copyArray2 }, () => {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
+            
             this.checkIfWinP2();
           }); 
 
@@ -174,6 +184,7 @@ class Grid extends React.Component {
       this.setState({ displayRestart: "initial", displayDraw: "initial" });
       console.log("match nul");
     }
+
   }
 
   handleReset() {
@@ -195,7 +206,14 @@ class Grid extends React.Component {
       displayDraw: "none",
       displayRestart: "none",
     });
+
     console.log("RESET");
+
+    // Reset background color of winning line : 
+    // clearbuttons.forEach(button => {
+    //   clearInterval();
+    // })
+
   }
 
   render() {
