@@ -185,14 +185,16 @@ class Grid extends React.Component {
     });
 
     console.log("RESET");
+
   }
 
   render() {
+    
     return (
       <section className="container-lg ">
         <h1 className="title text-center">Tic Tac Toe</h1>
         <div className="row justify-content-center ">
-          <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-1 text-center m-1 d-flex flex-column justify-content-center align-items-center">
             {this.state.player1Turn ? (
               <p>
                 Your turn <span className="red">Player1</span> : X
@@ -203,7 +205,7 @@ class Grid extends React.Component {
               </p>
             )}
             <input
-              className={`btn btn-dark m-1`}
+              className={`btn btn-dark m-1 col-12`}
               type="reset"
               value="RESET"
               onClick={this.handleReset}
@@ -274,7 +276,7 @@ class Grid extends React.Component {
               It's a draw... Play again?
             </p>
             <input
-              className={`btn btn-dark m-1 ms-2`}
+              className={`btn btn-dark m-1 ms-2 col-12`}
               style={{ display: this.state.displayRestart }}
               type="button"
               value="Restart"
