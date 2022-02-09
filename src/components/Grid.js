@@ -137,7 +137,7 @@ class Grid extends React.Component {
         }
       );
     }
-    // PLAYER 2
+    //PLAYER 2
     if (this.state.player1Turn === false) {
       const copyArray2 = [...this.state.checkedBtnPlayer2, e.target.id];
       this.setState(
@@ -148,11 +148,12 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer2: copyArray2 }, () => {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
+            e.target.className = "styleO m-1 border";//style for O
             this.checkIfWinP2();
           });
         }
       );
-      //   PLAYER 1
+      //PLAYER 1
     } else if (this.state.player1Turn === true) {
       const copyArray1 = [...this.state.checkedBtnPlayer1, e.target.id];
       this.setState(
@@ -163,6 +164,7 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer1: copyArray1 }, () => {
             console.log("test Array player1: ", this.state.checkedBtnPlayer1);
             e.target.value = this.state.player1;
+            e.target.className = "styleX m-1 border"; //style for X
             this.checkIfWinP1();
           });
         }
@@ -202,8 +204,10 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <section className="row justify-content-center">
-        <div className="players col border border-warning rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+    <section className="container-lg ">
+      <h1 className="title text-center">Tic Tac Toe</h1>
+      <div className="row justify-content-center ">
+        <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
           {this.state.player1Turn ? (
             <p>
               Your turn <span className="red">Player1</span> : X
@@ -220,7 +224,7 @@ class Grid extends React.Component {
             onClick={this.handleReset}
           />
         </div>
-        <div className="grid col border border-success rounded p-3 m-2">
+        <div className="col-lg-5 col-md-6  order-3 order-lg-3 rounded p-3 m-2  d-flex flex-column  justify-content-center align-items-center">
           <div style={{ display: "flex" }}>
             <Button onclick={this.handleClick} id="0" />
             <Button onclick={this.handleClick} id="1" />
@@ -239,7 +243,7 @@ class Grid extends React.Component {
             <Button onclick={this.handleClick} id="8" />
           </div>
         </div>
-        <div className="winningScenarios col border border-danger rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+        <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
           <p className="warning" style={{ display: this.state.display }}>
             Box already ticked ! Please, Select another one
           </p>
@@ -256,7 +260,8 @@ class Grid extends React.Component {
             onClick={this.handleReset}
           />
         </div>
-      </section>
+      </div>
+    </section>
     );
   }
 }
