@@ -16,6 +16,7 @@ class Grid extends React.Component {
       clickedBtns: [],
       checkedBtnPlayer1: [],
       checkedBtnPlayer2: [],
+      disabled: false,
       winner: false,
       winningLines: [
         ["0", "1", "2"],
@@ -39,42 +40,27 @@ class Grid extends React.Component {
   //Creating a function that will check out our users checkedBtn's array and see if they contain any winning line : if so, the first user that has one wins.
 
   checkIfWinP2() {
-    //   console.log(line);
     this.state.winningLines.map((line) => {
       const containsAll = line.every((elem) => {
         return this.state.checkedBtnPlayer2.includes(elem);
       });
       if (containsAll === true) {
-        for (let i = 0; i < line.length; i++) {
-          let id = line[i];
-          let allButtons = document.querySelectorAll("input");
-
-          allButtons.forEach((button) => {
-            if (button.id === id) {
-              setInterval(() => {
-                button.style.background = "red";
-              }, 100);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 8000);
-
-              setInterval(() => {
-                button.style.background = "red";
-              }, 1000);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 1200);
-            }
-          });
-        }
         this.setState({
           displayP2Won: "initial",
           displayRestart: "initial",
           displayDraw: "none",
           winner: true,
         });
+        for (let i = 0; i < line.length; i++) {
+          let id = line[i];
+          let allButtons = document.querySelectorAll("input");
+
+          allButtons.forEach((button) => {
+            if (button.id === id) {
+              button.style.background = "#FF0A0A";
+            }
+          });
+        }
         return console.log(" Bravo ! Player 2 a gagné ", containsAll);
       }
       return null;
@@ -87,36 +73,23 @@ class Grid extends React.Component {
         return this.state.checkedBtnPlayer1.includes(elem);
       });
       if (containsAll === true) {
-        for (let i = 0; i < line.length; i++) {
-          let id = line[i];
-          let allButtons = document.querySelectorAll("input");
-
-          allButtons.forEach((button) => {
-            if (button.id === id) {
-              setInterval(() => {
-                button.style.background = "green";
-              }, 100);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 8000);
-
-              setInterval(() => {
-                button.style.background = "green";
-              }, 1000);
-
-              setInterval(() => {
-                button.style.background = "white";
-              }, 1200);
-            }
-          });
-        }
         this.setState({
           displayP1Won: "initial",
           displayRestart: "initial",
           displayDraw: "none",
           winner: true,
         });
+        for (let i = 0; i < line.length; i++) {
+          let id = line[i];
+          let allButtons = document.querySelectorAll("input");
+
+          allButtons.forEach((button) => {
+            if (button.id === id) {
+              button.style.background = "#67BB3A";
+            }
+          });
+        }
+
         return console.log(" Bravo ! Player 1 a gagné ", containsAll);
       }
       return null;
@@ -148,7 +121,7 @@ class Grid extends React.Component {
           this.setState({ checkedBtnPlayer2: copyArray2 }, () => {
             console.log("test Array player2: ", this.state.checkedBtnPlayer2);
             e.target.value = this.state.player2;
-            e.target.className = "styleO m-1 border";//style for O
+            e.target.className = "styleO m-1 border"; //style for O
             this.checkIfWinP2();
           });
         }
@@ -180,11 +153,21 @@ class Grid extends React.Component {
     }
   }
 
+  componentDidUpdate(_prevProps, prevState) {
+    if (prevState.winner !== this.state.winner) {
+      if (this.state.winner === true) {
+        this.setState({ disabled: true });
+      }
+    }
+  }
+
   handleReset() {
+    this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input");
     clearbuttons.forEach((button) => {
-      if (button.value !== "RESET" || button.value !== "Rejouer") {
+      if (button.value !== "RESET" && button.value !== "Rejouer") { 
         button.value = "";
+        button.style.background = "transparent";
       }
     });
     this.setState({
@@ -192,6 +175,7 @@ class Grid extends React.Component {
       checkedBtnPlayer2: [],
       clickedBtns: [],
       player1Turn: true,
+      winner: false,
     });
     this.setState({
       displayP2Won: "none",
@@ -199,6 +183,7 @@ class Grid extends React.Component {
       displayDraw: "none",
       displayRestart: "none",
     });
+
     console.log("RESET");
 
   }
@@ -206,63 +191,100 @@ class Grid extends React.Component {
   render() {
     
     return (
-    <section className="container-lg ">
-      <h1 className="title text-center">Tic Tac Toe</h1>
-      <div className="row justify-content-center ">
-        <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
-          {this.state.player1Turn ? (
-            <p>
-              Your turn <span className="red">Player1</span> : X
-            </p>
-          ) : (
-            <p>
-              Your turn <span className="green">Player2</span> : O
-            </p>
-          )}
-          <input
-            className={`btn btn-dark m-1`}
-            type="reset"
-            value="RESET"
-            onClick={this.handleReset}
-          />
-        </div>
-        <div className="col-lg-5 col-md-6  order-3 order-lg-3 rounded p-3 m-2  d-flex flex-column  justify-content-center align-items-center">
-          <div style={{ display: "flex" }}>
-            <Button onclick={this.handleClick} id="0" />
-            <Button onclick={this.handleClick} id="1" />
-            <Button onclick={this.handleClick} id="2" />
+      <section className="container-lg ">
+        <h1 className="title text-center">Tic Tac Toe</h1>
+        <div className="row justify-content-center ">
+          <div className="col-lg-2 col-md-6  order-1 order-lg-1 rounded p-3 text-center m-2 d-flex flex-column justify-content-center align-items-center">
+            {this.state.player1Turn ? (
+              <p>
+                Your turn <span className="red">Player1</span> : X
+              </p>
+            ) : (
+              <p>
+                Your turn <span className="green">Player2</span> : O
+              </p>
+            )}
+            <input
+              className={`btn btn-dark m-1`}
+              type="reset"
+              value="RESET"
+              onClick={this.handleReset}
+            />
           </div>
+          <div className="col-lg-5 col-md-6  order-3 order-lg-3 rounded p-3 m-2  d-flex flex-column  justify-content-center align-items-center">
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="0"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="1"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="2"
+                disabled={this.state.disabled}
+              />
+            </div>
 
-          <div style={{ display: "flex" }}>
-            <Button onclick={this.handleClick} id="3" />
-            <Button onclick={this.handleClick} id="4" />
-            <Button onclick={this.handleClick} id="5" />
-          </div>
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="3"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="4"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="5"
+                disabled={this.state.disabled}
+              />
+            </div>
 
-          <div style={{ display: "flex" }}>
-            <Button onclick={this.handleClick} id="6" />
-            <Button onclick={this.handleClick} id="7" />
-            <Button onclick={this.handleClick} id="8" />
+            <div style={{ display: "flex" }}>
+              <Button
+                onclick={this.handleClick}
+                id="6"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="7"
+                disabled={this.state.disabled}
+              />
+              <Button
+                onclick={this.handleClick}
+                id="8"
+                disabled={this.state.disabled}
+              />
+            </div>
+          </div>
+          <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
+            <p className="warning" style={{ display: this.state.display }}>
+              Box already ticked ! Please, Select another one
+            </p>
+            <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
+            <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
+            <p style={{ display: this.state.displayDraw }}>
+              It's a draw... Play again?
+            </p>
+            <input
+              className={`btn btn-dark m-1 ms-2`}
+              style={{ display: this.state.displayRestart }}
+              type="button"
+              value="Restart"
+              onClick={this.handleReset}
+            />
           </div>
         </div>
-        <div className="col-lg-2 col-md-6 order-3 order-lg-3  rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
-          <p className="warning" style={{ display: this.state.display }}>
-            Box already ticked ! Please, Select another one
-          </p>
-          <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
-          <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
-          <p style={{ display: this.state.displayDraw }}>
-            It's a draw... Play again?
-          </p>
-          <input
-            className={`btn btn-dark m-1 ms-2`}
-            style={{ display: this.state.displayRestart }}
-            type="button"
-            value="Restart"
-          />
-        </div>
-      </div>
-    </section>
+      </section>
     );
   }
 }
