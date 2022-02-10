@@ -1,4 +1,4 @@
-// ---------------------------------- IMPORTS -----------------------------------
+// !------------------------------- IMPORTS -------------------------------- //
 import React from "react";
 import Button from "./Button";
 import { Icon } from "@iconify/react"; // Cats icons (Copyright Concats)
@@ -9,22 +9,22 @@ class Grid extends React.Component {
     this.state = {
       player1: "X", // Player 1
       player2: "O", // Player 2
-      player1Turn: true, //Boolean to alternate between player 1 and Player 2
+      player1Turn: true, // Boolean to alternate between player 1 and Player 2
 
-      //Changing the display of our text in the render dynamically,
-      //according to the game scenarios :
+      // Changing the display of our text in the render dynamically,
+      // according to the game scenarios :
       display: "none",
       displayP1Won: "none",
       displayP2Won: "none",
       displayDraw: "none",
       displayRESTART: "none",
       clickedBtns: [],
-      checkedBtnPlayer1: [], //Player 1's history of checked buttons
-      checkedBtnPlayer2: [], //Player 2's history of checked buttons
+      checkedBtnPlayer1: [], // Player 1's history of checked buttons
+      checkedBtnPlayer2: [], // Player 2's history of checked buttons
       disabled: false,
-      winner: false, //Boolean to check if a player has won
+      winner: false, // Boolean to check if a player has won
 
-      //List of the winning combination lines :
+      // List of the winning combination lines :
       winningLines: [
         ["0", "1", "2"],
         ["3", "4", "5"],
@@ -37,18 +37,18 @@ class Grid extends React.Component {
       ],
     };
 
-    //Bind functions
+    // Bind functions
     this.handleClick = this.handleClick.bind(this);
     this.checkIfWinP1 = this.checkIfWinP1.bind(this);
     this.checkIfWinP2 = this.checkIfWinP2.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
-  // ---------------------------------- FUNCTIONS -----------------------------------
+  // !------------------------------- FUNCTIONS -------------------------------- //
 
-  //Creating 2 functions that will create our users history of checked buttons (checkedBtnPlayer1 and checkedBtnPlayer2 arrays) and check if they contain any winning line at at every turn : the first user that has any of the winning lines wins and the game ends.
+  // Creating 2 functions that will create our users history of checked buttons (checkedBtnPlayer1 and checkedBtnPlayer2 arrays) and check if they contain any winning line at at every turn : the first user that has any of the winning lines wins and the game ends.
 
-  //Function to check if Player 2 has won :
+  // Function to check if Player 2 has won :
   checkIfWinP2() {
     //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 2's clicked buttons (checkedBtnPlayer2) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
@@ -80,7 +80,7 @@ class Grid extends React.Component {
       return null;
     });
   }
-  //Function to check if Player 1 has won :
+  // Function to check if Player 1 has won :
   checkIfWinP1() {
     //Creating a map method that will iterate into the array of winning lines and check if any of them are inside the array of player 1's clicked buttons (checkedBtnPlayer1) : if so, the const containsAll return True, if not, it returns False :
     this.state.winningLines.map((line) => {
@@ -114,21 +114,21 @@ class Grid extends React.Component {
   }
 
   handleClick(e) {
-    //If the button's value is not empty, it means that the button is already clicked => the user can't select it and gets an error message :
+    // If the button's value is not empty, it means that the button is already clicked => the user can't select it and gets an error message :
     if (e.target.value !== "") {
       return this.setState(
         {
           display: "initial",
         },
         () => {
-          //Creating a setTimeOut method to remove the error message after 2 seconds :
+          // Creating a setTimeOut method to remove the error message after 2 seconds :
           setTimeout(() => {
             this.setState({ display: "none" });
           }, 1900);
         }
       );
     }
-    //---------------- PLAYER 2 -----------------
+    // ---------------- PLAYER 2 ----------------- //
 
     // Creating a condition to check whose turn it is (Player1's turn or Player2's turn): if the boolean Player1Turn is true, it means that the next move will be a "X" for Player 1. If Player1Turn is false, the next move will be a "O" for Player 2:
 
@@ -147,7 +147,7 @@ class Grid extends React.Component {
           });
         }
       );
-      //---------------- PLAYER 1 ----------------
+      // ---------------- PLAYER 1 ---------------- //
     } else if (this.state.player1Turn === true) {
       const copyArray1 = [...this.state.checkedBtnPlayer1, e.target.id];
       this.setState(
@@ -164,11 +164,11 @@ class Grid extends React.Component {
         }
       );
     }
-    const copyClickedBtns = this.state.clickedBtns; //Creating a copy of the clicked buttons's array
-    copyClickedBtns.push(e.target.id); //Adding the last clicked button to our copy array
-    this.setState({ clickedBtns: copyClickedBtns }); // replacing our clicked buttons array with our updated copyArray
+    const copyClickedBtns = this.state.clickedBtns; // Creating a copy of the clicked buttons's array
+    copyClickedBtns.push(e.target.id); // Adding the last clicked button to our copy array
+    this.setState({ clickedBtns: copyClickedBtns }); // Replacing our clicked buttons array with our updated copyArray
 
-    // Checking if the clicked buttons array is full (i.e, if it contains oll of our button) and if we do not have ana winner : if so, we get a draw and the game is over. => a "RESTART" button is displayed
+    // Checking if the clicked buttons array is full (i.e, if it contains all of our buttons id) and if we do not have any winner : if so, we get a draw and the game is over. => a "RESTART" button is displayed
 
     if (this.state.clickedBtns.length === 9 && this.state.winner === false) {
       this.setState({ displayRESTART: "initial", displayDraw: "initial" });
@@ -176,7 +176,7 @@ class Grid extends React.Component {
     }
   }
 
-  //Checking if we have a winner : if so, the button are disabled so that the player cant keep playing.
+  // Checking if we have a winner : if so, the button are disabled so that the player cant keep playing.
   componentDidUpdate(_prevProps, prevState) {
     if (prevState.winner !== this.state.winner) {
       if (this.state.winner === true) {
@@ -185,7 +185,7 @@ class Grid extends React.Component {
     }
   }
 
-  //Function that resets our buttons and elements at the end of a round  :
+  // Function that resets our buttons and elements at the end of a round  :
   handleReset() {
     this.setState({ disabled: false });
     let clearbuttons = document.querySelectorAll("input"); //we select every input
@@ -213,6 +213,8 @@ class Grid extends React.Component {
 
     console.log("RESET");
   }
+
+  // !------------------------------- RENDER -------------------------------- //
 
   render() {
     return (
@@ -243,6 +245,7 @@ class Grid extends React.Component {
               onClick={this.handleReset}
             />
           </div>
+          {/* Div containing our Button components */}
           <div className="col-lg-5 col-md-6  order-3 order-lg-3 rounded p-3 m-2  d-flex flex-column  justify-content-center align-items-center">
             <div style={{ display: "flex" }}>
               <Button
@@ -297,10 +300,8 @@ class Grid extends React.Component {
                 disabled={this.state.disabled}
               />
             </div>
-            {/* <p className="warning" style={{ display: this.state.display }}>
-               Box already ticked ! Please, select another one.
-            </p> */}
           </div>
+          {/* Div containing are end of game messages */}
           <div className="col-lg-3 col-md-6 order-3 order-lg-3 rounded p-3 m-2 d-flex flex-column justify-content-center align-items-center">
             <p style={{ display: this.state.displayP2Won }}>Player 2 won !!</p>
             <p style={{ display: this.state.displayP1Won }}>Player 1 won !!</p>
@@ -324,7 +325,7 @@ class Grid extends React.Component {
             Box already ticked ! Please, select another one.
           </p>
         </div>
-
+        {/* Div footer */}
         <div className="row div-concats">
           <p className="align-center concats">
             {" "}
