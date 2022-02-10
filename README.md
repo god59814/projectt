@@ -1,5 +1,5 @@
 # ABOUT THE PROJECT
-In this project we tried to recreate the famous game "Tic-Tac-Toe" using ReactJS.
+In this project we recreated the famous game "Tic-Tac-Toe" using ReactJS.
 
 # RULES OF THE GAME
 
@@ -25,10 +25,10 @@ The winner is the one who manages to align three identical symbols, horizontally
 - Create a RESET button to restart the game
 
 # Built With
-Here are the frameworks/libraries used for this project:
-
 React.js
+
 Bootstrap
+
 Iconify
 
 # Contributors 
