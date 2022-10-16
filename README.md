@@ -1,14 +1,20 @@
-# ABOUT THE PROJECT
+# TIC TAC TOE
+![Screenshot tic tac toe](https://github.com/Lysianedon/Morpion-React/blob/master/src/tictactoe.png?raw=true)
+
+## LINK TO PRODUCTION INSTANCE
+lysianedon.github.io/Morpion-React/
+
+## ABOUT THE PROJECT
 In this project we recreated the famous game "Tic-Tac-Toe" using ReactJS.
 
-# RULES OF THE GAME
+## RULES OF THE GAME
 
 The **Morpion**, also called Tic-Tac-Toe is played on a square grid of 3x3 squares. Two players, compete against each other. They must each in turn fill in a square on the grid with the symbol assigned to them: O or X.
 
 The winner is the one who manages to align three identical symbols, horizontally, vertically or diagonally.
 
 
-# STEPS TO CREATE THE GAME
+## STEPS TO CREATE THE GAME
 
  **Step1:The grid of 3 rows and 3 columns with a table**
 - Each box corresponds to a clickable button (Button.js component)
@@ -24,14 +30,14 @@ The winner is the one who manages to align three identical symbols, horizontally
 - When all boxes are filled: if no line has been created, end the game with a draw and reset the game
 - Create a RESET button to restart the game
 
-# Built With
+## Built With
 React.js
 
 Bootstrap
 
 Iconify
 
-# Contributors 
+## Contributors 
 @pauline-wim
 @ChiBienayme
 @Lysianedon
