@@ -2,7 +2,7 @@
 ![Screenshot tic tac toe](https://github.com/Lysianedon/Morpion-React/blob/master/src/tictactoe.png?raw=true)
 
 ## LINK TO PRODUCTION INSTANCE
-lysianedon.github.io/Morpion-React/
+https://lysianedon.github.io/Morpion-React/
 
 ## ABOUT THE PROJECT
 In this project we recreated the famous game "Tic-Tac-Toe" using ReactJS.
